@@ -19,4 +19,6 @@ Store this data in firebase which makes it possible to see your friends favorite
 
 ## Prerequisites
 The used api is: https://www.googleapis.com/books/v1/volumes?q=?/
+<p>
 And firebase to store favorites of the user.
+</p>
