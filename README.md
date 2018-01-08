@@ -10,8 +10,13 @@ target group: people intrested in reading books.
 ## Solution
 Make an app where you can search for books including the reviews. 
 Store this data in firebase which makes it possible to see your friends favorites.
+<p>
+ Sketch of the app.
+</p>
+
+<img src=https://github.com/elgoesto/FinalProject/blob/master/schetsfinalapp.png>
 
 
 ## Prerequisites
-The used api is: https://www.googleapis.com/books/v1/volumes?q=?
-And firebase to store favorites of the user
+The used api is: https://www.googleapis.com/books/v1/volumes?q=?/
+And firebase to store favorites of the user.
