@@ -19,9 +19,9 @@ Store this data in firebase which makes it possible to see your friends favorite
 ### Features
 MVP:
 * search for a book
-* search for part of book title or author
+* search for book title or author
 * save favorites
-* search for frieds favorites
+* search for friends favorites by email addres
 * send friends recommended books (optional)
 
 
