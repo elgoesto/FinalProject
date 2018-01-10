@@ -21,7 +21,7 @@ MVP:
 * search for a book
 * search for book title or author
 * save favorites
-* search for friends favorites by email addres
+* search for friends favorites by name
 * send friends recommended books (optional)
 
 
