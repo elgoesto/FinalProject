@@ -25,11 +25,11 @@ The API used is google books, this makes it possible to search for a title. As s
 
 ## Data conversion
 <p>
-  To store de data in a database, Firebas is used. For the information about the books the google books API. </br>
+  To store de data in a database, Firebase is used. For the information about the books the google books API is consulted. </br>
   No further data sources will be used.
 </p>
 <p>
-  For the filtering of the data needed for this project, a class will be used to store only the important data. 
+  For the filtering of the data needed for this project, a class will be used to store only the important data from the API. 
 </p>
 
 
