@@ -1,3 +1,4 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/elgoesto/justovdwerfpset4?branch=master)](https://bettercodehub.com/)
 # FinalProject
 
 ## Problem Statement 
@@ -30,3 +31,6 @@ The used api is: https://www.googleapis.com/books/v1/volumes?q=?/
 <p>
 And firebase to store users and their favorites.
 </p>
+
+
+
