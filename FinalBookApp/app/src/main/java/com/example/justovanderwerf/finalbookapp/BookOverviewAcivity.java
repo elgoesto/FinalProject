@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -106,7 +107,7 @@ public class BookOverviewAcivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        setListener();
+        clickListener();
         updateListView();
     }
 
@@ -115,6 +116,20 @@ public class BookOverviewAcivity extends AppCompatActivity {
 
         bookListView.setAdapter(adapter);
     }
+
+    private void clickListener() {
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(BookOverviewAcivity.this, BookDetailActivity.class);
+                String bookId = idList.get(position);
+                intent.putExtra("Id", bookId);
+                startActivity(intent);
+            }
+        });
+    }
+
 
 
 

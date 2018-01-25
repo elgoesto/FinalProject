@@ -1,8 +1,12 @@
 package com.example.justovanderwerf.finalbookapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class BookDetailActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -38,6 +46,7 @@ public class BookDetailActivity extends AppCompatActivity {
     String id;
     String newUrl;
     Book currentBook;
+    Bitmap bmp;
 
 
 
@@ -59,6 +68,8 @@ public class BookDetailActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
+
+        textViewDescription.setMovementMethod(new ScrollingMovementMethod());
 
         newBook();
     }
@@ -130,8 +141,55 @@ public class BookDetailActivity extends AppCompatActivity {
         newBook();
     }
 
+    private void updateViews() {
+        textBookTitle.setText(currentBook.getTitle());
+        textViewDescription.setText(Html.fromHtml(currentBook.getDesc(), Html.FROM_HTML_MODE_COMPACT));
+        textViewAuthors.setText(currentBook.getAuthors());
 
+        retrieveImage();
     }
+
+    private void retrieveImage() {
+        // Retrieve the image
+        if(currentBook.getImageUrl() != "") {
+            new Thread() {
+                @Override
+                public void run() {
+                    URL url = null;
+                    try {
+                        url = new URL(currentBook.getImageUrl());
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    Bitmap bmp = null;
+                    try {
+                        bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        setImage(bmp);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshImage();
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        }
+    }
+
+    private void refreshImage() {
+        imageViewCover.setImageBitmap(bmp);
+    }
+
+    private void setImage(Bitmap b) {
+        bmp = b;
+    }
+
+
+
+
 
 
     public void homeOnClick(View view) {
