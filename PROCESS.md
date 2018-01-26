@@ -20,6 +20,26 @@ Try to load all the data from a selected book. Struggled with the the favorites 
 
 # Day 6 (Tuesday 23 Januari)
 
+//Add to fovorites </br>
+Detail page of the book finished. Able to add books to favorites.
+
+# Day 7 (Wednesday 24 Januari)
+
+//Changed the database structure </br>
+Changed the database structure to make it possibe to search for friend favorites. Skipped the feature to make a friend list due to lack of time.
+
+# Day 8 (Thursday 25 Januari)
+
+//Seach friends by name. </br>
+Able to see friend favorites by search for a friends name.
+
+# Day 9 (Friday 26 Januari)
+
+
+
+
+
+
 
 
 
