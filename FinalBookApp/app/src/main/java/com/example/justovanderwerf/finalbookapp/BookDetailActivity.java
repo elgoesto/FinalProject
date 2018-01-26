@@ -21,8 +21,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +51,7 @@ public class BookDetailActivity extends AppCompatActivity {
     String newUrl;
     Book currentBook;
     Bitmap bmp;
+    Favorites favorites;
 
 
 
@@ -125,7 +130,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 }
             }
 
-            // Save these details in a Volume object.
+            // Store details in a Book object.
             currentBook = new Book(title, authors, imageUrl, description, id );
 
             updateViews();
@@ -150,7 +155,6 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void retrieveImage() {
-        // Retrieve the image
         if(currentBook.getImageUrl() != "") {
             new Thread() {
                 @Override
@@ -161,7 +165,6 @@ public class BookDetailActivity extends AppCompatActivity {
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
-                    Bitmap bmp = null;
                     try {
                         bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                         setImage(bmp);
@@ -187,6 +190,39 @@ public class BookDetailActivity extends AppCompatActivity {
         bmp = b;
     }
 
+    public void addToFav(View view) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String uid = currentUser.getUid();
+        users = db.getReference("favorites").child(uid);
+        Log.d("checkje", currentBook.getTitle() + currentBook.getId());
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                favorites = dataSnapshot.getValue(Favorites.class);
+                favorites.print();
+                favorites.addBook(currentBook.getTitle(), currentBook.getId());
+                addToDatabase(favorites);
+                Intent intent = new Intent(BookDetailActivity.this, UsersFavoriteBooksActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        };
+        users.addListenerForSingleValueEvent(postListener);
+    }
+
+    private void addToDatabase(Favorites favorites) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String uid = currentUser.getUid();
+        users = db.getReference();
+
+        users.child("favorites").child(uid).setValue(favorites);
+    }
 
 
 
@@ -206,4 +242,7 @@ public class BookDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FriendsOverviewActivity.class);
         startActivity(intent);
     }
+
+
 }
+

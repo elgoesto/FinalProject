@@ -40,7 +40,7 @@ public class loginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         database = FirebaseDatabase.getInstance();
-        users = database.getReference("users");
+        users = database.getReference();
 
         usernameEdittext = findViewById(R.id.usernameEditText);
         emailEdittext = findViewById(R.id.emailEditText);
@@ -64,17 +64,8 @@ public class loginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("succeslogin", "createUserWithEmail:success");
-                            String mail = email.replace('.',',');
-                            String uid = mAuth.getCurrentUser().getUid();
-                            DatabaseReference ref = database.getReference();
-                            if (username != ""){
-                                ref.child("users").child(username).child(username).setValue(username);
-                            }
+                            onCreated(task);
 
-                            //ref.child("users").child(username).child(email).setValue(email); // dit doet het niet.
-
-                            Intent intent = new Intent(loginActivity.this, BookOverviewAcivity.class);
-                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("faillogin", "createUserWithEmail:failure", task.getException());
@@ -103,7 +94,6 @@ public class loginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("succes", "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(loginActivity.this, BookOverviewAcivity.class);
                             startActivity(intent);
 
@@ -119,4 +109,41 @@ public class loginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void onCreated(Task<AuthResult> task) {
+        if (task.isSuccessful()) {
+
+            // Sign in success, update UI with the signed-in user's information
+            Log.d("CREATEUSER", "createUserWithEmail:success");
+            FirebaseUser user = mAuth.getCurrentUser();
+            makeNewFavorites(user, email);
+            Intent intent = new Intent(loginActivity.this, BookOverviewAcivity.class);
+            Toast.makeText(loginActivity.this, "User created.",
+                    Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+
+        } else {
+
+            // If sign in fails, display a message to the user.
+            Log.w("CREATEUSER", "createUserWithEmail:failure", task.getException());
+            Toast.makeText(loginActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    /**
+     * Creates a new favorites object and adds it to the database. Also adds the new user to the
+     * email to uid table in the database.
+     */
+    private void makeNewFavorites(FirebaseUser user, String email) {
+        String uid = user.getUid();
+        Favorites fav = new Favorites();
+
+
+        users.child("favorites").child(uid).setValue(fav);
+        users.child("username").child(username).setValue(uid);
+        Log.d("FAVORITES", "makeNewFavorites: ");
+    }
+
 }

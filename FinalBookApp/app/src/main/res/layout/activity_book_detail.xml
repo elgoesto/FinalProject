@@ -38,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add to Favs!" />
+            android:text="Add to Favs!"
+            android:onClick="addToFav"/>
     </LinearLayout>
 
     <ImageView

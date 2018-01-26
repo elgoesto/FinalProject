@@ -35,19 +35,20 @@
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/buttonSearchBook"
+            android:id="@+id/buttonSearchFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Search" />
+            android:text="Search"
+            android:onClick="onFriendSearchClick"/>
     </LinearLayout>
 
     <ListView
-
+        android:id="@+id/favListView"
         android:layout_weight="8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="80dp"
+        android:paddingTop="10dp"
         android:scrollbars="vertical" >
 
     </ListView>
