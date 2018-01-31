@@ -21,7 +21,6 @@
         <activity android:name=".BookOverviewAcivity" />
         <activity android:name=".BookDetailActivity" />
         <activity android:name=".UsersFavoriteBooksActivity" />
-        <activity android:name=".FriendsFavoriteBooksActivity" />
         <activity android:name=".FriendsOverviewActivity"></activity>
     </application>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,16 +13,16 @@
         android:id="@+id/textTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="20dp"
         android:text="Your favorite books"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp" />
 
     <ListView
         android:id="@+id/favListView"
-        android:layout_weight="9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="9"
         android:paddingTop="10dp"
         android:scrollbars="vertical" />
 
@@ -30,31 +30,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/buttonHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Home"
-            android:onClick="homeOnClick"/>
+            android:adjustViewBounds="true"
+            android:background="@drawable/searchicon"
+            android:onClick="homeOnClick"
+            android:scaleType="fitCenter" />
 
         <Button
             android:id="@+id/buttonOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Favorites"
-            android:onClick="overviewOnClick"/>
+            android:adjustViewBounds="true"
+            android:background="@drawable/favoritesicon"
+            android:onClick="overviewOnClick"
+            android:scaleType="fitCenter" />
 
         <Button
             android:id="@+id/buttonFriendOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Friends"
-            android:onClick="friendsOnClick"/>
+            android:adjustViewBounds="true"
+            android:background="@drawable/friendsicon"
+            android:onClick="friendsOnClick"
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
 </LinearLayout>

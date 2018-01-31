@@ -79,6 +79,10 @@ public class BookDetailActivity extends AppCompatActivity {
         newBook();
     }
 
+    /**
+     * Function to get the detailed information about a book.
+     */
+
     private void newBook(){
         Intent intent = getIntent();
 
@@ -91,7 +95,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("RESPONSE", "onResponse: " + response);
+                        Log.d("Check", "onResponse: " + response);
 
                         parseJSONResponse(response);
                     }
@@ -104,15 +108,21 @@ public class BookDetailActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    /**
+     * JSON function to get the value from the API.
+     */
+
     private void parseJSONResponse(String response) {
 
         try {
+            //Store book title.
             JSONObject volume = new JSONObject(response);
             String title = volume.getJSONObject("volumeInfo").optString("title");
             String description = volume.getJSONObject("volumeInfo").optString("description");
             if(description == ""){
                 description = "No description";
             }
+            //Store img link.
             JSONObject imageLinks = volume.getJSONObject("volumeInfo").optJSONObject("imageLinks");
             String imageUrl = "";
             if(imageLinks != null) {
@@ -124,6 +134,7 @@ public class BookDetailActivity extends AppCompatActivity {
             String authors = "";
             JSONArray arr = volume.getJSONObject("volumeInfo").optJSONArray("authors");
 
+            // Store all the authors in an array.
             if(arr != null) {
                 for (int i = 0; i < arr.length(); i++) {
                     authors += arr.getString(i);
@@ -140,19 +151,21 @@ public class BookDetailActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        newBook();
-    }
+    /**
+     * Update the details page with the retrieved data.
+     */
 
     private void updateViews() {
         textBookTitle.setText(currentBook.getTitle());
         textViewDescription.setText(Html.fromHtml(currentBook.getDesc(), Html.FROM_HTML_MODE_COMPACT));
-        textViewAuthors.setText(currentBook.getAuthors());
+        textViewAuthors.setText("Authors: " + currentBook.getAuthors());
 
         retrieveImage();
     }
+
+    /**
+     * Function to show the image properly.
+     */
 
     private void retrieveImage() {
         if(currentBook.getImageUrl() != "") {
@@ -182,13 +195,25 @@ public class BookDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set image to the view.
+     */
+
     private void refreshImage() {
         imageViewCover.setImageBitmap(bmp);
     }
 
+    /**
+     * In separate function, because else error when opening new image.
+     */
+
     private void setImage(Bitmap b) {
         bmp = b;
     }
+
+    /**
+     * Add a book to favorites.
+     */
 
     public void addToFav(View view) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -200,7 +225,6 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 favorites = dataSnapshot.getValue(Favorites.class);
-                favorites.print();
                 favorites.addBook(currentBook.getTitle(), currentBook.getId());
                 addToDatabase(favorites);
                 Intent intent = new Intent(BookDetailActivity.this, UsersFavoriteBooksActivity.class);
@@ -215,6 +239,10 @@ public class BookDetailActivity extends AppCompatActivity {
         };
         users.addListenerForSingleValueEvent(postListener);
     }
+
+    /**
+     * Store the selected book to the database.
+     */
 
     private void addToDatabase(Favorites favorites) {
         FirebaseUser currentUser = mAuth.getCurrentUser();

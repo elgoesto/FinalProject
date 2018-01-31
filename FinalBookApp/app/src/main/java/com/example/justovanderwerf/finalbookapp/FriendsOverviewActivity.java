@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,7 +29,7 @@ public class FriendsOverviewActivity extends AppCompatActivity {
     List<String> nameList;
     FirebaseAuth mAuth;
     EditText username;
-    String uid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,17 @@ public class FriendsOverviewActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        clickListener();
+
 
 
 
     }
 
+
+    /**
+     * Search for User in Firebase.
+     */
     public void onFriendSearchClick(View view) {
         String searchname = username.getText().toString();
 
@@ -73,6 +80,10 @@ public class FriendsOverviewActivity extends AppCompatActivity {
         mDatabase.addListenerForSingleValueEvent(postListener);
     }
 
+    /**
+     * Update the listview with the friends favorites.
+     */
+
     private void updateListView(String uid) {
         try {
             mDatabase = db.getReference("favorites").child(uid);
@@ -81,7 +92,7 @@ public class FriendsOverviewActivity extends AppCompatActivity {
             ValueEventListener postListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // Get Favorites object and set the listview.
+                    // Get Favorites object from favorites class and set to the ListView.
                     Favorites fav = dataSnapshot.getValue(Favorites.class);
 
                     setLists(fav);
@@ -99,11 +110,31 @@ public class FriendsOverviewActivity extends AppCompatActivity {
         } catch (Exception e){
             e.printStackTrace();
 
-            Toast.makeText(FriendsOverviewActivity.this, "User niet bekend!",
+            Toast.makeText(FriendsOverviewActivity.this, "User unknown!",
                     Toast.LENGTH_SHORT).show();
         }
 
     }
+
+    /**
+     * Function to click on friends favorite book and the the details.
+     */
+    private void clickListener() {
+        favListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(FriendsOverviewActivity.this, BookDetailActivity.class);
+                String bookId = idList.get(position);
+                intent.putExtra("Id", bookId);
+                startActivity(intent);
+            }
+        });
+    }
+
+    /**
+     * Function to get the book titles from a friend.
+     */
     private void setLists(Favorites fav) {
         nameList = fav.getTitleList();
         idList = fav.getIdList();

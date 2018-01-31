@@ -52,6 +52,10 @@ public class loginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Create user in Firebase.
+     */
+
     public void createUser(View view){
         email = emailEdittext.getText().toString();
         password = passwordEdittext.getText().toString();
@@ -69,7 +73,7 @@ public class loginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("faillogin", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(loginActivity.this, "Authentication failed.",
+                            Toast.makeText(loginActivity.this, "No valid Password",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -79,12 +83,14 @@ public class loginActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Login with email an username. (Firebase standard)
+     */
 
     public void LogIn(View view) {
         email = emailEdittext.getText().toString();
         password = passwordEdittext.getText().toString();
-        username = usernameEdittext.getText().toString();
+
 
 
         mAuth.signInWithEmailAndPassword(email, password)
@@ -110,11 +116,15 @@ public class loginActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Function to go to next page and setup the user in Firebase.
+     */
+
     private void onCreated(Task<AuthResult> task) {
         if (task.isSuccessful()) {
 
             // Sign in success, update UI with the signed-in user's information
-            Log.d("CREATEUSER", "createUserWithEmail:success");
+            Log.d("CREATE", "createUserWithEmail:success");
             FirebaseUser user = mAuth.getCurrentUser();
             makeNewFavorites(user, email);
             Intent intent = new Intent(loginActivity.this, BookOverviewAcivity.class);
@@ -133,8 +143,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a new favorites object and adds it to the database. Also adds the new user to the
-     * email to uid table in the database.
+     * Creates a new favorites object to store the favorites in. Link userID to username.
      */
     private void makeNewFavorites(FirebaseUser user, String email) {
         String uid = user.getUid();
@@ -142,6 +151,8 @@ public class loginActivity extends AppCompatActivity {
 
 
         users.child("favorites").child(uid).setValue(fav);
+
+        // Store Username to make search possible.
         users.child("username").child(username).setValue(uid);
         Log.d("FAVORITES", "makeNewFavorites: ");
     }

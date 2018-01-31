@@ -60,7 +60,9 @@ public class BookOverviewAcivity extends AppCompatActivity {
 
     }
 
-    // Make the query
+    /**
+     * Add the query to the API, to find the books.
+     */
     public void searchOnClick(View view) {
         query = searchBar.getText().toString();
         newUrl = url+query;
@@ -70,19 +72,22 @@ public class BookOverviewAcivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("RESPONSE", "onResponse: " + response);
+                        Log.d("SEARCH", "onResponse: " + response);
 
                         parseJSONResponse(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("SEARCH", "SearchActivity: wrong");
+                Log.d("SEARCH", "SearchActivity: Error");
             }
         });
             queue.add(stringRequest);
     }
 
+    /**
+     * Function to get all the books from the API.
+     */
     private void parseJSONResponse(String response) {
         try {
             JSONObject obj = new JSONObject(response);
@@ -111,11 +116,18 @@ public class BookOverviewAcivity extends AppCompatActivity {
         updateListView();
     }
 
+    /**
+     * Fill the ListView with the books.
+     */
     private void updateListView() {
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
 
         bookListView.setAdapter(adapter);
     }
+
+    /**
+     * Go to books detail page.
+     */
 
     private void clickListener() {
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

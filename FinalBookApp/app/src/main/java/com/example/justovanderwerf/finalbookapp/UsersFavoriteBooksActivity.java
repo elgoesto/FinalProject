@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class UsersFavoriteBooksActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     String uid;
 
+    FirebaseUser loggedInUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +45,12 @@ public class UsersFavoriteBooksActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
+        loggedInUser = mAuth.getCurrentUser();
+
 
 
         updateListView(uid);
+        clickListener();
     }
 
 
@@ -78,6 +84,61 @@ public class UsersFavoriteBooksActivity extends AppCompatActivity {
             Toast.makeText(UsersFavoriteBooksActivity.this, "er is iets aan de hand.",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void clickListener() {
+        favListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(UsersFavoriteBooksActivity.this, BookDetailActivity.class);
+                String bookId = idList.get(position);
+                intent.putExtra("Id", bookId);
+                startActivity(intent);
+            }
+        });
+
+
+         favListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+        int pos, long id) {
+            if(uid.equals(loggedInUser.getUid())){
+                deleteFavorite(pos);
+                return true;
+            } else {
+                Toast.makeText(UsersFavoriteBooksActivity.this, "Can't delete from someone else's favorites.",
+                        Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        }
+    });
+}
+
+    /**
+     * When long clicking an item the app the selected item will be deleted from the favorites.
+     * If the last book is deleted a new book is added because firebase won't allow an
+     * empty list to be saved.
+     */
+    private void deleteFavorite(int pos) {
+        mDatabase = db.getReference();
+        Favorites fav;
+
+        nameList.remove(pos);
+        idList.remove(pos);
+
+        // if the list is empty make a new one with the starting book.
+        if(idList.size() == 0){
+            fav = new Favorites();
+            Toast.makeText(UsersFavoriteBooksActivity.this, "Must have a favorite!",
+                    Toast.LENGTH_SHORT).show();
+        } else{
+            fav = new Favorites(nameList, idList);
+        }
+
+        // Set the updated favorites in the database.
+        mDatabase.child("favorites").child(uid).setValue(fav);
+        updateListView(loggedInUser.getUid());
     }
 
     private void setLists(Favorites fav) {

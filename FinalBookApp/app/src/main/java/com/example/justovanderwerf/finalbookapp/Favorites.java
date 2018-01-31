@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * Created by Justo van der Werf on 1/25/2018.
+ *
+ * Class to store favorite books to Firebase in the proper way. Else only 1 child per item in Firebase.
  */
 
 public class Favorites {
@@ -18,6 +20,8 @@ public class Favorites {
     public Favorites(){
         titleList = new ArrayList<>();
         idList = new ArrayList<>();
+
+        // Added 1 "book" to the list, else problems with firebase. Can't add empty list.
         titleList.add("Favorite list");
         idList.add("1111111111");
 
@@ -36,12 +40,7 @@ public class Favorites {
         return idList;
     }
 
-    public void print(){
-        for(int i = 0; i < titleList.size(); i++){
-            Log.d("TEST", titleList.get(i));
-            Log.d("TEST", idList.get(i));
-        }
-    }
+
 
     public void addBook(String name, String id){
         titleList.add(name);
