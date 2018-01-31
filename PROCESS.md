@@ -35,7 +35,22 @@ Able to see friend favorites by search for a friends name.
 
 # Day 9 (Friday 26 Januari)
 
+//Can click books already in favorites list </br>
+Go to details of a book from favorites list.
 
+# Day 10 (Monday 29 Januari)
+
+//sick
+
+# Day 11 (thursday 30 Januari)
+
+//sick
+
+# Day 12 (Wednesday 31 Januari)
+
+//Added the comments and finetuned the interface </br>
+Finalized the code, fully functional. 
+Made the REPORT.md.
 
 
 
