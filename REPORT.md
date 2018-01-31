@@ -25,7 +25,19 @@ List of activities:
 * FriendsOverviewActivity.java --> search for friend and show their favorites.
 
 ## Progress
+The first big difference with the DESIGN.md document is the structure of the database.
+The first design caused big troubles when trying to search for a user bij name.
+So now 2 tables are made, one for username with user ID as child. 
+The second for user ID with child favorite books.
 
+One of the activities in the DESIGN.md document is left out.
+This was an activity with an overview of friends. 
 
 
 ## Decisions
+The change of database structure was necessay to make a logical and fast search method. 
+Leaving the overview of friends out and the function to add friends was due to a lack of time.
+Now you can search on username only.
+With more time that would defenitely be a function of the app.
+
+
