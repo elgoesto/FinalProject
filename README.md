@@ -15,7 +15,7 @@ Store this data in firebase which makes it possible to see your friends favorite
  Sketch of the app.
 </p>
 
-<img src=https://github.com/elgoesto/FinalProject/blob/master/doc/schetsfinalapp.png width="600">
+<img src=https://github.com/elgoesto/FinalProject/blob/master/doc/reportoverview.png width="600">
 
 ### Features
 MVP:
@@ -23,7 +23,7 @@ MVP:
 * search for book title or author
 * save favorites
 * search for friends favorites by name
-* send friends recommended books (optional)
+
 
 
 ## Prerequisites
