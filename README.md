@@ -1,4 +1,6 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/elgoesto/justovdwerfpset4?branch=master)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/elgoesto/justovdwerfpset4?branch=master)](https://bettercodehub.com/)</br>
+Product demo:
+https://www.youtube.com/watch?v=GAOu7Tq_tJs
 # FinalProject
 
 ## Problem Statement 
