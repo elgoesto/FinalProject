@@ -1,7 +1,7 @@
 # Report BookBase
 
 ## Introduction
-For those who love to read, and have note all around the house and notes in youre phone. 
+For those who love to read and cannot keep track of what books they still need to read. Those who got notes all around the house and notes in their phone. 
 This is the solution. BookBase lets you search for books an then store them to a "To read/favorites" list.
 If that is not enough, you can even see the favorites list of your friends.
 Below a snap of the app. </br></br>
@@ -26,7 +26,7 @@ List of activities:
 
 ## Progress
 The first big difference with the DESIGN.md document is the structure of the database.
-The first design caused big troubles when trying to search for a user bij name.
+The first design caused big troubles when trying to search for a user by name.
 So now 2 tables are made, one for username with user ID as child. 
 The second for user ID with child favorite books.
 
@@ -38,6 +38,6 @@ This was an activity with an overview of friends.
 The change of database structure was necessay to make a logical and fast search method. 
 Leaving the overview of friends out and the function to add friends was due to a lack of time.
 Now you can search on username only.
-With more time that would defenitely be a function of the app.
+With more time that would defenitely be a function of the app. But after all, BookBase is an easy to use and neat app. 
 
 
