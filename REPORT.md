@@ -39,8 +39,11 @@ In the bottom of the screen is the "friends" button. This brings the user to the
 </br>
 
 ## Progress
-The first big difference with the DESIGN.md document is the structure of the database. The first design caused big troubles when trying to search for a user by name. So now 2 tables are made, one for username with user ID as child. 
-The second for user ID with child favorite books.
+### Database
+The first big difference with the DESIGN.md document is the structure of the database. So now 2 tables are made, one for username with user ID as child. The second for user ID with a child for favorite book titles and a child with its ID. So now you can search for a user, get his userID, then go to the users favorites. </br>
+The book title and the bookID are stored in the same order. This makes it possible to delete books from this list and get to the detail page of the book, because the ID is used for this. Below is an image of the data base structure</br>
+<img src="https://github.com/elgoesto/FinalProject/blob/master/doc/database_struct.png" width=600>
+</br></br>
 
 One of the activities in the DESIGN.md document is left out. This was an activity with an overview of friends. 
 
