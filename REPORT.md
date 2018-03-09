@@ -45,13 +45,13 @@ The book title and the bookID are stored in the same order. This makes it possib
 <img src="https://github.com/elgoesto/FinalProject/blob/master/doc/database_struct.png" width=600>
 </br></br>
 
-One of the activities in the DESIGN.md document is left out. This was an activity with an overview of friends. 
+### Acivities
+One of the activities in the DESIGN.md document is left out. This was an activity with an overview of friends. This was left out because the function to add friends to you friends list was not in the MVP. This function is not necessary for the functionallity of the app, so it is not that bad.</br></br>
+
+### Layout
+The intention was to create a simple/userfriendly app, With a logical and smooth interface. It turned out to be a logical interface but the buttons at the bottom of the screen to navigate trough the diffrent pages are awful. Due to streching of the images they look ugly. This was the result of using layout_weight, but they were functional so I spent my time on other parts of this project.
 
 
-## Decisions
-The change of database structure was necessay to make a logical and fast search method. 
-Leaving the overview of friends out and the function to add friends was due to a lack of time.
-Now you can search on username only.
-With more time that would defenitely be a function of the app. But after all, BookBase is an easy to use and neat app. 
+
 
 
