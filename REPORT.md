@@ -18,20 +18,31 @@ There is a class to make an object of the books, this makes it possible to show 
 This class gets the data from the API. </br>
 Furthermore there is a class to store the favorites of a user. This was necessary for firebase. This class stores and gets data from firebase. </br>
 List of activities:
-* LoginActivity.java --> Handles login and register of new user.
-* BookOverViewActivity.java --> Seach for books and show them.
-* BookDetailActivity.java --> Show the details of a book and add to favorites.
-* UsersFavoritesBooksActivity.java --> Show users favorites and remove items.
-* FriendsOverviewActivity.java --> search for friend and show their favorites.
+
+* LoginActivity.java --> Handles login and register of new user.</br>
+Here the default firebase login and register is used. When creating a new user, you need to give an email, a password and a username. This username is then stored in the firebase database together with the userID. This makes it possible to search other users by name.</br>
+
+* BookOverViewActivity.java --> Seach for books and show them.</br>
+After login you get to the bookOverViewActivity. This is an activity where you can search a book title or author. Then a scrollable list of hits is shown, with a maximum of 40 books. These books are clickable. When clicked you get to the bookDetailActivity.
+</br>
+
+* BookDetailActivity.java --> Show the details of a book and add to favorites.</br>
+This page gives an overview of the book. With ofcourse the title and authors of the book, but also an image of the cover and a brief description. In the top right corner of this screen is the "Add to favorites" button. Once clicked this book is stored in the users favorites list, and the user also goes to the usersFavoritesBooksActivity. 
+</br>
+
+* UsersFavoritesBooksActivity.java --> Show users favorites and remove items.</br>
+This is a list view of the favorite books of the user. When an item is clicked you go back to the book detail page again. When an item is long clicked the book is removed from the favorites list.
+</br>
+
+* FriendsOverviewActivity.java --> search for friend and show their favorites.</br>
+In the bottom of the screen is the "friends" button. This brings the user to the friendsOverviewActivity. The user is able to search for other users by name. If the user/friend exists the favorites list of that user is shown. you can also add his books to your own favorites list.
+</br>
 
 ## Progress
-The first big difference with the DESIGN.md document is the structure of the database.
-The first design caused big troubles when trying to search for a user by name.
-So now 2 tables are made, one for username with user ID as child. 
+The first big difference with the DESIGN.md document is the structure of the database. The first design caused big troubles when trying to search for a user by name. So now 2 tables are made, one for username with user ID as child. 
 The second for user ID with child favorite books.
 
-One of the activities in the DESIGN.md document is left out.
-This was an activity with an overview of friends. 
+One of the activities in the DESIGN.md document is left out. This was an activity with an overview of friends. 
 
 
 ## Decisions
