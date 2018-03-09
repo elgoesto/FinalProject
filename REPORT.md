@@ -51,7 +51,7 @@ One of the activities in the DESIGN.md document is left out. This was an activit
 ### Layout
 The intention was to create a simple/userfriendly app, With a logical and smooth interface. It turned out to be a logical interface but the buttons at the bottom of the screen to navigate trough the diffrent pages are awful. Due to streching of the images they look ugly. This was the result of using layout_weight, but they were functional so I spent my time on other parts of this project.
 
-
-
+## Decisions
+The app pretty much looked like the design, only the database structure changed and the abillity to add friends is left out. When there was more time it would have definitely been in the app. 
 
 
