@@ -51,8 +51,6 @@ One of the activities in the DESIGN.md document is left out. This was an activit
 ### Layout
 The intention was to create a simple/userfriendly app, With a logical and smooth interface. It turned out to be a logical interface but the buttons at the bottom of the screen to navigate trough the diffrent pages are awful. Due to streching of the images they look ugly. This was the result of using layout_weight, but they were functional so I spent my time on other parts of this project.
 
-## Decisions
-The app pretty much looked like the design, only the database structure changed and the abillity to add friends is left out. When there was more time it would have definitely been in the app. 
 
 # Personal Challenges
 The first big challenge I encountered was working with the Google Books API. This API returned alot of data in all kind of forms. For example the image of the cover. This caused some troubles because the image took too long to download and then the JSON request stopped and no image, or the image of the previous book, was shown. To solve this has been a real struggle and consumed allot of my time, But I solved this by using a separate class to just store the JSON objects in and from there use the data. Once I understood this JSON was great tool to work with.</br></br>
@@ -62,5 +60,8 @@ The second challenge had less to do with the app its self, but was with GitHub. 
 An other challenge I came across was with FireBase. When creating a new user you want to make an empty list where you can store the favorites book, but FireBase won't accept empty lists (child). How I solved this was to always add a book when creating a new user. I called this "book": Favorite list. This is shown in the image below. So now FireBase accept it as a child and it would still work in the app, even if the favorite list of a user or friend is empty. After a lot of trial and error, I now feel confident using FireBase.</br></br>
 
  <img src="https://github.com/elgoesto/FinalProject/blob/master/doc/favoritebooktitle.png" width=400>
+ 
+ ## Decisions
+The app pretty much looked like the design, only the database structure changed and the abillity to add friends is left out. When there was more time it would have definitely been in the app. 
 
 
