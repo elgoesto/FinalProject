@@ -59,8 +59,8 @@ The first big challenge I encountered was working with the Google Books API. Thi
 
 The second challenge had less to do with the app its self but was with GitHub. In the previous course, App Studio, we were used to first create an app and then make a repository from there. But this time it was done the other way round. We started with a repository and afterwards we added in the app. To "solve" this I first made a new repository from the app and then copied my DESIGN.md to it. This was ofcourse not the right solution rather just a way to advoid the challenge. After some help of a couple of TA's I finally managed to add my app to the initial repository. During the process I accidentally pushed to the wrong repo wich was really annoying, but because of all this strugles GitHub is now second nature to me.</br></br>
 
-An other challenge I came across was with FireBase. When creating a new user you want to make an empty list where you can store the favorites book, but FireBase won't accept empty lists (child). How I solved this was to always add a book when creating a new user. I called this "book": Favorites list. So now FireBase accept it as a child and it would still work in the app. After a lot of trial and error, I now feel confident using FireBase.</br></br>
+An other challenge I came across was with FireBase. When creating a new user you want to make an empty list where you can store the favorites book, but FireBase won't accept empty lists (child). How I solved this was to always add a book when creating a new user. I called this "book": Favorite list. This is shown in the image below. So now FireBase accept it as a child and it would still work in the app. After a lot of trial and error, I now feel confident using FireBase.</br></br>
 
- 
+ <img src="https://github.com/elgoesto/FinalProject/blob/master/doc/database_struct.png" width=600>
 
 
