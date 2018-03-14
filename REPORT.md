@@ -54,4 +54,13 @@ The intention was to create a simple/userfriendly app, With a logical and smooth
 ## Decisions
 The app pretty much looked like the design, only the database structure changed and the abillity to add friends is left out. When there was more time it would have definitely been in the app. 
 
+# Personal Challenges
+The first big challenge I encountered was working with the Google Books API. This API return alot of data in all kind of forms. For example the image of the cover. This caused some troubles because the image took too long to download and then the JSON request stopped and no image or the image of the previous book was shown. To solve this has been a real struggle and consumed allot of my time, But I solved this by using a separate class to just store the JSON objects in and from there use the data. Once I understood this JSON was great tool to work with.</br></br>
+
+The second challenge had less to do with the app its self but was with GitHub. In the previous course, App Studio, we were used to first create an app and then make a repository from there. But this time it was done the other way round. We started with a repository and afterwards we added in the app. To "solve" this I first made a new repository from the app and then copied my DESIGN.md to it. This was ofcourse not the right solution rather just a way to advoid the challenge. After some help of a couple of TA's I finally managed to add my app to the initial repository. During the process I accidentally pushed to the wrong repo wich was really annoying, but because all of this strugles GitHub is now second nature to me.</br></br>
+
+An other challenge I came across was with FireBase. When creating a new user you want to make an empty list where you can store the favorites book, but FireBase won't accept empty lists (child). How I solved this was to always add a book when creating a new user. I called this "book": Favorites list. So now FireBase accept it as a child and it would still work in the app. After a lott of trial and error, I now feel confident using FireBase.</br></br>
+
+ 
+
 
