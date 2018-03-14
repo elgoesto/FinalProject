@@ -61,6 +61,6 @@ The second challenge had less to do with the app its self but was with GitHub. I
 
 An other challenge I came across was with FireBase. When creating a new user you want to make an empty list where you can store the favorites book, but FireBase won't accept empty lists (child). How I solved this was to always add a book when creating a new user. I called this "book": Favorite list. This is shown in the image below. So now FireBase accept it as a child and it would still work in the app. After a lot of trial and error, I now feel confident using FireBase.</br></br>
 
- <img src="https://github.com/elgoesto/FinalProject/blob/master/doc/database_struct.png" width=600>
+ <img src="https://github.com/elgoesto/FinalProject/blob/master/doc/favoritebooktitle.png" width=600>
 
 
